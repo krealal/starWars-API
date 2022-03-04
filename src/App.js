@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { classShips, countStartShip } from "./main";
 
 function App() {
   const [ships, setShips] = useState();
   const [shipsClasses, setShipsClasses] = useState([]);
 
-  (async () => {
-    setShipsClasses(await classShips());
-    setShips(await countStartShip());
-  })();
+  useEffect(() => {
+    (async () => {
+      setShipsClasses(await classShips());
+      setShips(await countStartShip());
+    })();
+  }, []);
 
   return (
     <div id="background-container">
