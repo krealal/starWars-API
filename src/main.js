@@ -1,8 +1,11 @@
-const starShipsApi = async () => {
-  const response = await fetch("https://swapi.dev/api/starships/");
+export const starShipsApi = async () => {
+  const response = await fetch(process.env.REACT_APP_STARWARSAPI);
   const starship = await response.json();
 
   return starship;
 };
 
-export default starShipsApi;
+export const countStartShip = async () => {
+  const { count } = await starShipsApi();
+  return count;
+};
